@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Job Details Extractor",
+    "version": "1.0",
+    "description": "Extract job details dynamically.",
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["*://*.linkedin.com/*", "*://*.indeed.com/*", "*://*.glassdoor.com/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.linkedin.com/*", "*://*.indeed.com/*", "*://*.glassdoor.com/*", "*://localhost/*", "*://127.0.0.1/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  

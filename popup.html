@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Details Extractor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+    }
+    .job-details {
+      margin-top: 10px;
+    }
+    .job-details div {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Job Details Extractor</h1>
+  <button id="extractButton">Extract Job Details</button>
+  <div id="status" class="job-details">
+    <p><strong>Job Title:</strong> <span id="jobTitle">N/A</span></p>
+    <p><strong>Company Name:</strong> <span id="companyName">N/A</span></p>
+    <p><strong>Location:</strong> <span id="location">N/A</span></p>
+    <p><strong>Days Posted:</strong> <span id="daysPosted">N/A</span></p>
+    <p><strong>People Applied:</strong> <span id="peopleApplied">N/A</span></p>
+    <p><strong>Hirer Information:</strong> <span id="hirerInformation">N/A</span></p>
+    <p><strong>LinkedIn Profile:</strong> <a id="hirerLinkedIn" href="#" target="_blank" style="display: none;">View LinkedIn Profile</a></p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
