@@ -4,29 +4,177 @@
   <title>Job Details Extractor</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 10px;
+      width: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: white;
     }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+    }
+
+    .header {
+      margin-bottom: 24px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin: 0 0 4px 0;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #6B7280;
+      margin: 0;
+    }
+
+    .extract-button {
+      width: 100%;
+      padding: 12px 20px;
+      background: #2786e4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .extract-button:hover {
+      background: #1f74ca;
+    }
+
     .job-details {
-      margin-top: 10px;
+      display: none;
+      margin-top: 24px;
     }
-    .job-details div {
-      margin-bottom: 5px;
+
+    .job-details.visible {
+      display: block;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      width: 120px;
+      font-size: 14px;
+      color: #6B7280;
+    }
+
+    .detail-value {
+      flex: 1;
+      font-size: 14px;
+      color: #111827;
+    }
+
+    .detail-value a {
+      color: #2786e4;
+      text-decoration: none;
+    }
+
+    .detail-value a:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+      color: #6B7280;
+    }
+
+    .loading.visible {
+      display: block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #E5E7EB;
+      border-top-color: #2786e4;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
   </style>
 </head>
 <body>
-  <h1>Job Details Extractor</h1>
-  <button id="extractButton">Extract Job Details</button>
-  <div id="status" class="job-details">
-    <p><strong>Job Title:</strong> <span id="jobTitle">N/A</span></p>
-    <p><strong>Company Name:</strong> <span id="companyName">N/A</span></p>
-    <p><strong>Location:</strong> <span id="location">N/A</span></p>
-    <p><strong>Days Posted:</strong> <span id="daysPosted">N/A</span></p>
-    <p><strong>People Applied:</strong> <span id="peopleApplied">N/A</span></p>
-    <p><strong>Hirer Information:</strong> <span id="hirerInformation">N/A</span></p>
-    <p><strong>LinkedIn Profile:</strong> <a id="hirerLinkedIn" href="#" target="_blank" style="display: none;">View LinkedIn Profile</a></p>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">Job Details Extractor</h1>
+      <p class="subtitle">Extract details from a LinkedIn job posting</p>
+    </div>
+
+    <button id="extractButton" class="extract-button">Extract Job Details</button>
+
+    <div id="loading" class="loading">
+      <div class="loading-spinner"></div>
+      <p>Extracting job details...</p>
+    </div>
+
+    <div id="jobDetails" class="job-details">
+      <div class="detail-item">
+        <div class="detail-label">Job Title</div>
+        <div class="detail-value" id="jobTitle">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Job URL</div>
+        <div class="detail-value">
+          <a id="jobUrl" href="#" target="_blank">View Job Posting</a>
+        </div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Company</div>
+        <div class="detail-value" id="companyName">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Description</div>
+        <div class="detail-value" id="description">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Location</div>
+        <div class="detail-value" id="location">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Posted</div>
+        <div class="detail-value" id="daysPosted">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Applications</div>
+        <div class="detail-value" id="peopleApplied">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Hirer</div>
+        <div class="detail-value" id="hirerInformation">N/A</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Profile</div>
+        <div class="detail-value">
+          <a id="hirerLinkedIn" href="#" target="_blank" style="display: none;">View on LinkedIn</a>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="popup.js"></script>
 </body>
 </html>
+
