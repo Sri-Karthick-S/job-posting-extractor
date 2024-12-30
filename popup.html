@@ -18,6 +18,13 @@
 
     .header {
       margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-content {
+      flex: 1;
     }
 
     .title {
@@ -31,6 +38,27 @@
       font-size: 14px;
       color: #6B7280;
       margin: 0;
+    }
+
+    .save-button {
+      padding: 8px 16px;
+      background: #10B981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: none;
+    }
+
+    .save-button:hover {
+      background: #059669;
+    }
+
+    .save-button.visible {
+      display: block;
     }
 
     .extract-button {
@@ -120,8 +148,11 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1 class="title">Job Details Extractor</h1>
-      <p class="subtitle">Extract details from a LinkedIn job posting</p>
+      <div class="header-content">
+        <h1 class="title">Job Details Extractor</h1>
+        <p class="subtitle">Extract details from a LinkedIn job posting</p>
+      </div>
+      <button id="saveButton" class="save-button">Save to Trail</button>
     </div>
 
     <button id="extractButton" class="extract-button">Extract Job Details</button>
@@ -177,4 +208,3 @@
   <script src="popup.js"></script>
 </body>
 </html>
-

@@ -21,6 +21,12 @@ function getHref(selector) {
   return element ? element.href : "N/A";
 }
 
+// Helper function to get inner HTML safely
+function getInnerHTML(selector) {
+  const element = document.querySelector(selector);
+  return element ? element.innerHTML.trim() : "N/A";
+}
+
 function parseJobLocation(text) {
   const locationMatch = text.match(/^(.*?)·/);
   const location = locationMatch ? locationMatch[1].trim() : "N/A";
@@ -42,6 +48,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       jobTitle: getText('.job-details-jobs-unified-top-card__job-title'),
       companyName: getText('.job-details-jobs-unified-top-card__company-name'),
       description: getText('.jobs-description__content'),
+      descriptionHtml: getInnerHTML('.jobs-description__content'),
       location: parsedLocation.location,
       daysPosted: parsedLocation.daysPosted,
       peopleApplied: parsedLocation.peopleApplied,
@@ -49,7 +56,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       hirerLinkedIn: getHref('.hirer-card__hirer-information a')
     };
 
-    console.log("Extracted Job Details:", jobDetails);
     sendResponse({ status: "success", data: jobDetails });
   }
 
